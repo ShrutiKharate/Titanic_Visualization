@@ -1,0 +1,28 @@
+
+# Correlation Heatmap Code Explanation
+
+1. **Problem Encountered**:
+   - When using `train_df.corr()`, an error occurred because the dataset contains non-numeric columns like 'Name', 'Sex', 'Ticket', etc.
+   - Correlation calculation requires only numeric values.
+
+2. **Solution**:
+   - Use `select_dtypes()` to filter the dataframe and keep only numeric columns (int64 and float64 types).
+
+3. **Code Walkthrough**:
+   - `numeric_df = train_df.select_dtypes(include=['int64', 'float64'])`
+     - This line selects only numeric columns from the dataset.
+   - `corr = numeric_df.corr()`
+     - Calculates the correlation matrix for the numeric columns.
+   - `plt.figure(figsize=(10,8))`
+     - Sets the figure size for the plot.
+   - `sns.heatmap(corr, annot=True, cmap='coolwarm')`
+     - Draws a heatmap of the correlation matrix.
+     - `annot=True` displays the correlation coefficients inside the boxes.
+     - `cmap='coolwarm'` sets the color theme.
+   - `plt.title('Correlation Heatmap')`
+     - Adds a title to the plot.
+   - `plt.show()`
+     - Displays the plot.
+
+4. **Result**:
+   - A heatmap showing how strongly numeric features are correlated with each other (e.g., 'Survived', 'Fare', 'Age', etc.).
